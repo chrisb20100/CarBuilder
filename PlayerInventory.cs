@@ -1,21 +1,27 @@
-using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-[Serializable]
-public class CarPart
+public class PlayerInventory : MonoBehaviour
 {
-    public string partName;
-    public bool isInstalled;
-    public float condition; // 0 - 100
+    public List<string> items = new List<string>();
 
-    public CarPart(string name)
+    public void AddItem(string item)
     {
-        partName = name;
-        isInstalled = false;
-        condition = 100f;
+        items.Add(item);
+        Debug.Log(item + " added to inventory.");
     }
 
-    public bool IsBroken()
+    public bool HasItem(string item)
     {
-        return condition <= 0;
+        return items.Contains(item);
+    }
+
+    public void RemoveItem(string item)
+    {
+        if (items.Contains(item))
+        {
+            items.Remove(item);
+            Debug.Log(item + " removed from inventory.");
+        }
     }
 }
