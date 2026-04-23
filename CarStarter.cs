@@ -8,6 +8,10 @@ public class CarStarter : MonoBehaviour
     public OilSystem oil;
     public AudioManager audioManager;
 
+    public WiringSystem wiring;
+    public BatterySystem battery;
+    public IgnitionSystem ignition;
+
     public void TryStart()
     {
         if (!car.CanStart())
@@ -31,6 +35,12 @@ public class CarStarter : MonoBehaviour
         if (engine.IsOverheated())
         {
             Debug.Log("Engine overheated!");
+            return;
+        }
+
+        if (!ignition.CanIgnite())
+        {
+            Debug.Log("Electrical system not ready!");
             return;
         }
 
